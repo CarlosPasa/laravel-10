@@ -2,32 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index(){
-        $categorias = [
-            'Fideos'=>[
-                'Fideos largos',
-                'Cabello de angel'
-            ],
-            'Verduras'=>[
-                'Tomates',
-                'Lechuga'
-            ]
-        ];
-        $productos = [];
-        $nombreCategorias=[];
-        foreach($categorias as $nombreCategoria => $categoriaArray){
-            $nombreCategorias[]=$nombreCategoria;
-            foreach($categoriaArray as $producto){
-                $productos[]=$producto;
-            }
-        }
+        //Agarra todos los elementos de la tabla
+        //$categorias = Categoria::all();
+        $categorias = Categoria::all();
         return view('home',[
-            'productos'=> $productos,
-            'categorias'=> $nombreCategorias,
+            'categorias'=> $categorias,
         ]);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ProductoController;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -26,10 +28,11 @@ Route::prefix('categorias')->group(function(){
             echo 'Categorias con ofertas del ultima semana';
         });
     });
-    Route::get('/', [\App\Http\Controllers\CategoriaController::class,"index"]);
-    Route::get('{nombreCategoria}', [\App\Http\Controllers\CategoriaController::class,"categoria"]);
+    Route::get('crear-categoria', [CategoriaController::class,"crearCategoria"]);
+    Route::get('/', [CategoriaController::class,"index"]);
+    Route::get('{nombreCategoria}', [CategoriaController::class,"categoria"]);    
 });
 //Nos devuelve todos los productos en formato JSON
 
-Route::get('productos/{categoria?}', [\App\Http\Controllers\ProductoController::class,"index"]);
+Route::get('productos/{categoria?}', [ProductoController::class,"index"]);
 

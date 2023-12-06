@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -10,28 +11,27 @@ class CategoriaController extends Controller
         //return view('welcome');
         //dd($request->all());
         //dd($request);
-        $categorias = [
-            'Fideos'=>[
-                'Fideos largos',
-                'cabello de angel'
-            ],
-            'Verduras'=>[
-                'Tomates',
-                'Lechuga'
-            ]
-        ];
-        if(!is_null($request->input('nombre'))){
-            if(array_key_exists($request->input('nombre'),$categorias)){
-                echo 'Existe Categoria';
-            }
+        $nombre = $request->input('nombre');
+        if(!is_null($nombre)){
+            $categorias = Categoria::where('nombre','LIKE','%'.$nombre.'%')
+                ->get();
         }else{
-            foreach($categorias as $nombreCategoria => $categoria){
-                    echo $nombreCategoria.'<br>';
-            }
+            $categorias = Categoria::orderBy('nombre','desc')
+                ->get();
         }
+        
+        return view('home',[
+            'categorias'=> $categorias,
+        ]);
     }
 
     public function categoria(string $nombreCategoria){
         echo 'Productos de '. $nombreCategoria;
+    }
+
+    public function crearCategoria(){
+        $categoria = new Categoria();
+        $categoria->nombre="Lacteos";
+        $categoria->save();
     }
 }
