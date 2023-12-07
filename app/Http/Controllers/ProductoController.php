@@ -33,4 +33,10 @@ class ProductoController extends Controller
         $producto->save();
 
     }
+
+    public function verProducto(Producto $producto){
+        return view('producto',[
+            'producto'=> $producto
+        ]);
+    }
 }

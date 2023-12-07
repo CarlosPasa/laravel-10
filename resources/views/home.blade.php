@@ -9,7 +9,7 @@
                 <h4>{{$categoria->nombre}}</h4>
             </div>
             <div class="col-12">
-                <div class="row">
+                <div class="row mt-5 mb-5">
                     @foreach($categoria->productos as $producto)
                     <div class="col-12 col-sm-4">
                         <div class="card" style="width: 18rem;">
