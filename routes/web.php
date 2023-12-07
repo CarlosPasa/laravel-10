@@ -34,5 +34,6 @@ Route::prefix('categorias')->group(function(){
 });
 //Nos devuelve todos los productos en formato JSON
 
+Route::get('productos/crear-producto', [ProductoController::class,"crearProducto"]);
 Route::get('productos/{categoria?}', [ProductoController::class,"index"]);
 
