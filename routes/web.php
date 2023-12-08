@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
 use Illuminate\Http\JsonResponse;
@@ -30,7 +31,7 @@ Route::prefix('categorias')->group(function(){
     });
     Route::get('crear-categoria', [CategoriaController::class,"crearCategoria"]);
     Route::get('/', [CategoriaController::class,"index"]);
-    Route::get('{nombreCategoria}', [CategoriaController::class,"categoria"]);    
+    Route::get('{nombreCategoria}', [CategoriaController::class,"categoria"]);
 });
 //Nos devuelve todos los productos en formato JSON
 //PRODUCTOS
@@ -38,3 +39,7 @@ Route::get('productos/crear-producto', [ProductoController::class,"crearProducto
 Route::get('productos/ver-producto/{producto}', [ProductoController::class,"verProducto"]);
 Route::get('productos/{categoria?}', [ProductoController::class,"index"]);
 
+/* ADMIN */
+Route::prefix('admin')->group(function () {
+    Route::get('/',[AdminController::class, "home"]);
+});
