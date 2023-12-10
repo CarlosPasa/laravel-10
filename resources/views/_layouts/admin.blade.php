@@ -70,6 +70,7 @@
         </ol>
         <div class="container-fluid">
           <div class="animated fadeIn"></div>
+          @yield('contenido')
         </div>
       </main>
       <aside class="aside-menu">

@@ -19,7 +19,7 @@ class CategoriaController extends Controller
             $categorias = Categoria::orderBy('nombre','desc')
                 ->get();
         }
-        
+
         return view('home',[
             'categorias'=> $categorias,
         ]);

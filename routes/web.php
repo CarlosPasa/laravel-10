@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\CategoriaController as BackendCategoriaController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
 use Illuminate\Http\JsonResponse;
@@ -42,4 +43,6 @@ Route::get('productos/{categoria?}', [ProductoController::class,"index"]);
 /* ADMIN */
 Route::prefix('admin')->group(function () {
     Route::get('/',[AdminController::class, "home"]);
+    //Categorias
+    Route::resource('categorias',BackendCategoriaController::class);
 });
