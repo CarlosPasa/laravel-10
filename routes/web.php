@@ -4,8 +4,10 @@ use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\CategoriaController as BackendCategoriaController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 
@@ -42,7 +44,24 @@ Route::get('productos/{categoria?}', [ProductoController::class,"index"]);
 
 /* ADMIN */
 Route::prefix('admin')->group(function () {
-    Route::get('/',[AdminController::class, "home"]);
-    //Categorias
-    Route::resource('categorias',BackendCategoriaController::class);
+    Route::middleware('admin-logeado:0')->group(function (){
+        Route::get('login',[AdminController::class, "login"]);
+        Route::post('login', [AdminController::class, 'loguear']);
+    });
+
+    // Middleware para el logeo
+    Route::middleware('admin-logeado:1')->group(function (){
+        Route::get('/',[AdminController::class, "home"]);
+        Route::get('logout',[AdminController::class, "logout"]);
+        //Categorias
+        Route::resource('categorias',BackendCategoriaController::class);
+    });
+});
+
+Route::get('crear-usuario', function () {
+    $user = new User();
+    $user->name='Carlos';
+    $user->email='capo@gmail.com';
+    $user->password=Hash::make('123');
+    $user->save();
 });
