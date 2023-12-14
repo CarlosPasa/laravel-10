@@ -2,6 +2,7 @@
 @section('contenido')
 <div class="card">
     <div class="card-body">
+        @include('_includes.admin._modules.success')
         <table class="table table-responsive-sm">
             <thead>
                 <tr>
