@@ -71,7 +71,9 @@ class CategoriaController extends Controller
         $categoria->nombre = $nombre;
         $categoria->save();
 
-        return Redirect::action([CategoriaController::class,'index']);
+        return Redirect::action([CategoriaController::class,'index'])->with([
+            'success'=>'La categoría ha sido editada'
+        ]);
     }
 
     /**
@@ -79,6 +81,9 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        //
+        $categoria->delete();
+        return Redirect::action([CategoriaController::class,'index'])->with([
+            'success'=>'La categoría ha sido eliminada'
+        ]);
     }
 }
