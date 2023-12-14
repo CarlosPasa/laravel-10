@@ -62,6 +62,6 @@ Route::get('crear-usuario', function () {
     $user = new User();
     $user->name='Carlos';
     $user->email='capo@gmail.com';
-    $user->password=Hash::make('123');
+    $user->password=Hash::make('123456');
     $user->save();
 });

@@ -6,14 +6,13 @@
     </div>
     <div class="card-body">
         @include('_includes.admin._modules.errores')
-        <form method="post" action="{{ action([\App\Http\Controllers\Backend\CategoriaController::class,"update"], $categoria) }}">
+        <form method="post" action="{{ action([\App\Http\Controllers\Backend\CategoriaController::class,"store"]) }}">
             @csrf
-            <input type="hidden" name="_method" value="patch" />
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input class="form-control" name="nombre" id="nombre" type="text" value="{{$categoria->nombre}}" placeholder="Ingrese un nombre">
+                        <input class="form-control" name="nombre" id="nombre" type="text" value="" placeholder="Ingrese un nombre">
                     </div>
                 </div>
                 <div class="col-sm-12">
