@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\CategoriaController as BackendCategoriaController;
+use App\Http\Controllers\Backend\ProductoController as BackendProductoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
 use App\Models\User;
@@ -55,6 +56,8 @@ Route::prefix('admin')->group(function () {
         Route::get('logout',[AdminController::class, "logout"]);
         //Categorias
         Route::resource('categorias',BackendCategoriaController::class);
+        //Productos
+        Route::resource('productos',BackendProductoController::class);
     });
 });
 
