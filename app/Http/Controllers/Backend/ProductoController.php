@@ -40,10 +40,7 @@ class ProductoController extends Controller
     public function store(CrearProductoRequest $request)
     {
         $producto = new Producto();
-        $producto->nombre = $request->input('nombre');
-        $producto->stock = $request->input('stock');
-        $producto->precio = $request->input('precio');
-        $producto->categoria_id = $request->input('categoria_id');
+        $producto->fill($request->validated());
         $producto->save();
 
         return Redirect::action([ProductoController::class,'index'])->with([
@@ -76,10 +73,7 @@ class ProductoController extends Controller
      */
     public function update(EditarProductoRequest $request, Producto $producto)
     {
-        $producto->nombre = $request->input('nombre');
-        $producto->stock = $request->input('stock');
-        $producto->precio = $request->input('precio');
-        $producto->categoria_id = $request->input('categoria_id');
+        $producto->fill($request->validated());
         $producto->save();
 
         return Redirect::action([ProductoController::class,'index'])->with([
