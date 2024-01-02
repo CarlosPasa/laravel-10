@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ProductoController;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -20,23 +21,4 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 }); */
 
-Route::get('productos',function(){
-    $categorias = [
-        'Fideos'=>[
-            'Fideos largos',
-            'Cabello de angel'
-        ],
-        'Verduras'=>[
-            'Tomates',
-            'Lechuga'
-        ]
-    ];
-    $productos=[];
-    foreach($categorias as $categoriaArray){
-        foreach($categoriaArray as $producto){
-            $productos[]=$producto;
-        }
-    }
-    //return Response::json($productos);
-    return new JsonResponse($productos);
-});
+Route::get('productos/{producto}',[ProductoController::class,'show']);

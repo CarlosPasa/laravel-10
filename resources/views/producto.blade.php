@@ -5,8 +5,7 @@
 @endsection
 
 @section('main')
-    <h3>PRODUCTO {{ $producto->nombre }}</h3>
-    <div id="ver_producto">
-
+    <!--h3>PRODUCTO {{ $producto->nombre }}</h3-->
+    <div id="ver_producto" data-id="{{ $producto->id }}">
     </div>
 @endsection
