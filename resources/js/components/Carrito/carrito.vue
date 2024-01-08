@@ -52,7 +52,6 @@ const productos = ref([]);
 // Métodos
 const obtenerProductos = () => {
 	productos.value = JSON.parse(localStorage.getItem("productos")) || [];
-    console.log(productos.value);
 }
 
 // Eventos

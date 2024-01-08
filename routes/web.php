@@ -3,7 +3,9 @@
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\CategoriaController as BackendCategoriaController;
 use App\Http\Controllers\Backend\ProductoController as BackendProductoController;
+use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductoController;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -22,26 +24,21 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [\App\Http\Controllers\HomeController::class,"index"]);
-//CATEGORIAS
-Route::prefix('categorias')->group(function(){
-    Route::prefix('ofertas')->group(function(){
-        Route::get('ult-mes', function () {
-            echo 'Categorias con ofertas del ultimo mes';
-        });
-        Route::get('ult-semana', function () {
-            echo 'Categorias con ofertas del ultima semana';
-        });
+// HOME
+Route::get('/', [HomeController::class, 'index']);
+
+// PRODUCTOS
+Route::prefix('productos')->group(function() {
+
+    Route::prefix('{categoria}')->group(function() {
+
+        Route::get('/', [ProductoController::class, 'categoria']);
+        Route::get('{producto}', [ProductoController::class, 'verProducto']);
     });
-    Route::get('crear-categoria', [CategoriaController::class,"crearCategoria"]);
-    Route::get('/', [CategoriaController::class,"index"]);
-    Route::get('{nombreCategoria}', [CategoriaController::class,"categoria"]);
 });
-//Nos devuelve todos los productos en formato JSON
-//PRODUCTOS
-Route::get('productos/crear-producto', [ProductoController::class,"crearProducto"]);
-Route::get('productos/ver-producto/{producto}', [ProductoController::class,"verProducto"]);
-Route::get('productos/{categoria?}', [ProductoController::class,"index"]);
+
+// CARRITO
+Route::get('carrito', [CarritoController::class,'carrito']);
 
 /* ADMIN */
 Route::prefix('admin')->group(function () {

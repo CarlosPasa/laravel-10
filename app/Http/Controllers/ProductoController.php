@@ -34,9 +34,9 @@ class ProductoController extends Controller
 
     }
 
-    public function verProducto(Producto $producto){
-        return view('producto',[
-            'producto'=> $producto
+    public function verProducto(Categoria $categoria, Producto $producto) {
+        return view('producto', [
+            'producto' => $producto,
         ]);
     }
 }

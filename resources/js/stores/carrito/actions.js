@@ -23,5 +23,17 @@ export default {
 
         // Guardar productos en local storage
         localStorage.setItem("productos", JSON.stringify(this.productos));
+    },
+
+    editarCantidad(idProducto,cantidad){
+        // Busco el indice del producto
+        const indexExisteProducto = this.productos.findIndex( (el) => parseInt(el.id) === parseInt(idProducto));
+
+        // Si no existe el producto
+        if(indexExisteProducto !== -1) {
+            this.productos[indexExisteProducto].cantidad = cantidad;            
+        }
+        // Guardar productos en local storage
+        localStorage.setItem("productos", JSON.stringify(this.productos));
     }
 }
