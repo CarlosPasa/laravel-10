@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 class CarritoController extends Controller
 {
     public function __construct(
-    //     private CompraService $compraService,
+        private CompraService $compraService,
         private CarritoService $carritoService
     ) {}
 
@@ -27,19 +27,19 @@ class CarritoController extends Controller
         ]);
     }
 
-    // public function finalizarCompra(FinalizarCompraAPIRequest $request) {
+    public function finalizarCompra(FinalizarCompraAPIRequest $request) {
 
-    //     // Crear la compra
-    //     $compra = $this->compraService->crearCompra($request);
+        // Crear la compra
+        $compra = $this->compraService->crearCompra($request);
 
-    //     // Integrar mercadopago
-
-
-    //     // Enviar los mails
+        // Integrar mercadopago
 
 
-    //     return new JsonResponse([
-    //         'mensaje' => 'Compra finalizada'
-    //     ]);
-    // }
+        // Enviar los mails
+
+
+        return new JsonResponse([
+            'mensaje' => 'Compra finalizada'
+        ]);
+    }
 }
