@@ -52,7 +52,7 @@
                     <ul>
                         <li><strong>Metodo de entrega: </strong>{{ storeProcesoDeCompraStore.metodo_de_envio }}</li>
                     </ul>
-                    <div v-if="storeProcesoDeCompraStore.metodo_de_envio === 'Envio a domicilio'">
+                    <div v-if="storeProcesoDeCompraStore.metodo_de_envio === 'Envío a domicilio'">
                         <h6>Direccion de envio</h6>
                         <ul>
                             <li><strong>Direccion: </strong>{{ storeProcesoDeCompraStore.direccion }}</li>

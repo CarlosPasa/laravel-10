@@ -32,6 +32,7 @@ class CarritoController extends Controller
         // Crear la compra
         $compra = $this->compraService->crearCompra($request);
 
+        dd('a');
         // Integrar mercadopago
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Data\ProductoCarritoData;
+use App\Rules\ValidarStockProductoRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -28,7 +29,7 @@ class FinalizarCompraAPIRequest extends FormRequest
         return [
             'productos' => 'required|array',
             'productos.*.id' => 'required|integer|exists:productos,id',
-            'productos.*.cantidad' => 'required|integer',
+            'productos.*.cantidad' => ['required','integer', new ValidarStockProductoRule()],
 
             'nombre' => 'required|string',
             'apellido' => 'required|string',
